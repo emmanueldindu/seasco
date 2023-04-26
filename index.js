@@ -282,4 +282,3 @@ console.log('connected to DataBase!')
 
 start()
 
-module.exports = app
