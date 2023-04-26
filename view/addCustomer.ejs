@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    
+
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="font-weight-bold">Add New Customer</h4>
+            </div>
+
+            
+
+
+        
+<div class="card-body">
+
+<form action="/addCustomer" id="add_customer_form" method="post">
+   
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <Label class="col-form-label" for="Customer">
+                    Customer Name
+                    <input type="text"  name="name" class="form-control" placeholder="enter Name" id="" required>
+                </Label>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <Label class="col-form-label" for="Origin">
+                    Origin
+                    <input type="text"  name="origin" class="form-control" placeholder="enter Origin" id="" required>
+                </Label>
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <Label class="col-form-label" for="Destination">
+                    Destination
+                    <input type="text"  name="destination" class="form-control" placeholder="enter Destination" id="" required>
+                </Label>
+            </div>
+        </div>
+
+
+      
+        <!-- <div class="col-6">
+            <div class="form-group">
+                <Label class="col-form-label" for="Status">
+                    Status
+                    <input type="text"  name="status" class="form-control" placeholder="Status" id="">
+                </Label>
+            </div>
+        </div> -->
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <Label class="col-form-label" for="Date">
+                    Delivery Date
+                    <input type="date"  name="date" class="form-control" placeholder="Delivery Date" id="date" required>
+                </Label>
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <Label class="col-form-label" for="Location">
+                    Current Location
+                    <input type="text"  name="location" class="form-control" placeholder="Current Location" id="" required>
+                </Label>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <Label class="" for="description ">
+                    Description
+                    <textarea   name="description" class="form-control" rows="3" placeholder="goods description" required id=""></textarea>
+                </Label>
+            </div>
+        </div>
+
+    <div class="">
+        <button type="submit" class="btn btn-success">
+            Submit
+        </button>
+        <a href="/layout" class="btn btn-light">Cancel</a>
+    </div>
+</div>
+
+  </form>
+
+  
+  
+</div>
+</div>
+</div>
+
+
+</div>
+
+</body>
+</html>
