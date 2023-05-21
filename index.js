@@ -228,7 +228,8 @@ app.post('/email', (req, res) => {
             const mail_configs = {
             from: 'masterdindu04@gmail.com',
             to: to,
-            subject: 'Your Tracking ID for shipping',
+              subject: 'Your Tracking ID for shipping',
+            
             text:`Thank you for your recent shipping with us. We wanted to inform you that your item has been shipped and is on its way to you. As promised, we are sharing your tracking ID with you so that you can track your package every step of the way. Your tracking ID is ${message} .To track your package, please visit website and enter your tracking ID. You'll be able to see the current status of your package and estimated delivery date.
             
           

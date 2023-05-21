@@ -1,4 +1,12 @@
-const { getAllCustomers, getAddCustomerView, addCustomer, getUpdateCustomerView, updateCustomer, getDeleteCustomerView, deleteCustomer, searchCustomer } = require('../controllers/customerController')
+const { getAllCustomers,
+    getAddCustomerView,
+    addCustomer,
+    getUpdateCustomerView,
+    updateCustomer,
+    getDeleteCustomerView,
+    deleteCustomer,
+    searchCustomer
+} = require('../controllers/customerController')
 const express = require('express')
 
 
