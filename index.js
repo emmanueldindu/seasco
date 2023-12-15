@@ -52,6 +52,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(error)
 app.use(customerRoutes.routes)
 
+
 const store = new MongoDBSession({
     uri: connect_url,
     collection: 'mysessions',
@@ -74,6 +75,9 @@ const store = new MongoDBSession({
     })
   );
   
+  app.use(passport.initialize())
+  app.use(passport.session());
+
 
   
 app.get('/', (req, res) => {
@@ -87,10 +91,6 @@ app.get('/admin', (req, res) => {
     res.render('admin')
 })
 
-//  app.use((req, res, next) => {
-//     console.log(req.session);
-//     next();
-//   });
 
 
 
@@ -101,54 +101,23 @@ const adminPass = 'November!'
 
 
 
-
-// app.post('/admin', (req, res) => {
-//     const { name, password } = req.body
-//     console.log(`Submitted credentials: name=${name}, password=${password}`);
-  
-//     if (name === adminUserName && password === adminPass) {
-//         console.log(session)
-//         req.session.isAuth = true;
-//         req.session.isAdmin = true;
-
-//         console.log(`Session created: ${JSON.stringify(req.session)}`);
-//         res.redirect('/layout')
-//     } else {
-//         console.log('login failed')
-//         res.redirect('/admin')
-//     }
-// })
-
-
-// app.get('/layout', getAllCustomers, (req, res) => {
-//     console.log(`Current session: ${JSON.stringify(req.session)}`);
-//     if (req.session.isAdmin === true && req.session.isAdmin === true) {
-// // admin logs in with detailss
-//         console.log(`Admin session found: ${req.session}`);
-        
-//         res.render('layout')
-//     } else {
-//         console.log('Access denied: user is not an admin');
-//         res.redirect('/admin')
-//     }
-// })
-
-
-
 passport.serializeUser(function (user, done) {
     done(null, user.id)
 })
 
 
 passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
-        done(err, user);
-    })  
-
-})
+  User.findById(id)
+    .then(function (user) {
+      done(null, user);
+    })
+    .catch(function (err) {
+      done(err);
+    });
+});
 passport.use(new localStrategy( {
-    usernameField: 'username', // tell passport to look for username in the request body
-    passwordField: 'password' // tell passport to look for password in the request body
+    usernameField: 'username', 
+    passwordField: 'password' 
   }, function (username, password, done) {
     User.findOne({ username: username }).then(function (user) {
       if (!user) {
@@ -167,7 +136,11 @@ passport.use(new localStrategy( {
     }).catch(function (err) {
       return done(err);
     });
-  }));
+}));
+  
+app.get('/admin', (req, res) => {
+  res.render('admin');
+});
   
   app.post('/admin', passport.authenticate('local', {
     successRedirect: '/layout',
@@ -177,8 +150,16 @@ passport.use(new localStrategy( {
   }));
   
 
+  function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/admin'); // Redirect to the login page if not authenticated
+  }
+  
+
 // function isLogged(req, res, next )
-app.get('/layout', getAllCustomers, async (req, res) => {
+app.get('/layout', isAuthenticated, getAllCustomers, async (req, res) => {
     const exists = await User.exists({
         username: "admin"
     })
@@ -218,10 +199,13 @@ app.post('/email', (req, res) => {
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
-        auth: {
-                             user: 'seascologistics@gmail.com',
-                             pass:process.env.MAIL
-                        }
+      auth: {
+          
+                      
+        user: 'masterdindu04@gmail.com',
+                      //  pass:'dsnkzumlgsbfnikn'
+                          pass: 'nfbbsmwwximuypde'
+      }
 
     })
 
@@ -252,7 +236,7 @@ app.post('/email', (req, res) => {
         } else {
             console.log("email sent")
 
-            return  res.send('success')
+            return  alert('email sent')
         }
     })
 })    
