@@ -202,31 +202,118 @@ app.post('/email', (req, res) => {
       auth: {
           
                       
-        user: 'masterdindu04@gmail.com',
+        user: 'logilinklogistic@gmail.com',
                       //  pass:'dsnkzumlgsbfnikn'
-                          pass: 'nfbbsmwwximuypde'
+                          pass: 'cdpkaunzajqgimif'
+                          //     cdpkaunzajqgimif
       }
 
     })
 
             const mail_configs = {
-            from: 'masterdindu04@gmail.com',
+            from: 'logilinklogistic@gmail.com',
             to: to,
               subject: 'Your Tracking ID for shipping',
             
-            text:`Thank you for your recent shipping with us. We wanted to inform you that your item has been shipped and is on its way to you. As promised, we are sharing your tracking ID with you so that you can track your package every step of the way. Your tracking ID is ${message} .To track your package, please visit website and enter your tracking ID. You'll be able to see the current status of your package and estimated delivery date.
+            // text:`Thank you for your recent shipping with us. We wanted to inform you that your item has been shipped and is on its way to you. As promised, we are sharing your tracking ID with you so that you can track your package every step of the way. Your tracking ID is ${message} .To track your package, please visit website and enter your tracking ID. You'll be able to see the current status of your package and estimated delivery date.
             
           
             
-            Best regards,
-            Seasco Logistics
+            // Best regards,
+            // Seasco Logistics
             
             
             
             
             
             
-            `
+              // `
+              html: `
+              <html>
+              <head>
+              <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+              />
+          
+              <style>
+                @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
+                body {
+                  font-family: "Quicksand", Arial, sans-serif;
+                  margin: 0;
+                  /* padding: 0; */
+                  margin-top: 80px;
+                  padding: 30px;
+                  padding-left: 60px;
+                  font-weight: 500;
+                  color: black;
+                  width: 600px;
+                  margin-left: auto;
+                  margin-right: auto;
+                  background-color: white;
+                }
+          
+                /* .container {
+                      width: 600px;
+                      margin: 0 auto;
+                      background: white;
+                      margin-top: 80px;
+                      padding: 20px;
+                  } */
+          
+                .header {
+                  text-align: center;
+                }
+          
+                .message {
+                  margin-top: 20px;
+                }
+          
+                .signature {
+                  margin-top: 20px;
+                }
+                .logo-class {
+                  color: gray;
+                text-transform: capitalize;
+                font-size: 22px;
+                font-weight: bold;
+                text-decoration: underline;
+                }
+              
+                .logo-class span {
+                color: #e53d34;
+                }
+          
+                @media (max-width: 430px) {
+                  body {
+                    width: 350px !important;
+                    overflow-x: hidden;
+                    padding: 10px;
+                    font-size: 16px;
+                    margin-right: auto;
+                    margin-left: auto;
+                    /* font-size: 24px; */
+                  }
+                }
+              </style>
+            </head>
+              <body>
+                  <div class="container">
+                  <div class="header">
+                  <p class="logo-class">Logi<span>link.</span></p>
+
+                  </div>
+                      <p>Thank you for your recent shipping with us. We wanted to inform you that your item has been shipped and is on its way to you.</p>
+                      <p>As promised, we are sharing your tracking ID with you so that you can track your package every step of the way. </p>
+                      <p style="margin-top: 20px">Your tracking ID is <strong>${message}</strong></p>
+                      <p>To track your package, please visit our website and enter your tracking ID. You'll be able to see the current status of your package and the estimated delivery date.</p>
+                      <p>Best regards,<br>Logiklink</p>
+                  </div>
+              </body>
+              </html>
+          `
+              
+              
     }
     
 
@@ -236,7 +323,7 @@ app.post('/email', (req, res) => {
         } else {
             console.log("email sent")
 
-            return  alert('email sent')
+            return  res.status(200).send('Email sent successfully');
         }
     })
 })    
