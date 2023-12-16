@@ -7031,3 +7031,15 @@ html.mm-opening.logisco-mmenu-right .logisco-mobile-header {
 .gdlr-core-blog-thumbnail img {
 	width: 100%;
 }
+
+.logo-class {
+    color: white;
+	text-transform: capitalize;
+	font-size: 22px;
+	font-weight: bold;
+	text-decoration: underline;
+  }
+
+  .logo-class span {
+	color: #e53d34;
+  }
